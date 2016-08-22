@@ -5,7 +5,6 @@
 DSE Search (Solr + Cassandra) is a beneficial pairing of the indexing and searching, and faceting benefits of Solr with the scalabiity and reliablity of Cassandra.   In DSE search, all data is stored in Cassandra while the indices are maintained by Solr/Lucene.
 Solr queries sent to DSE Search - either via HTTP(s) or via CQL - are evaluated by the Solr/Lucene libraries and the primary keys of the result set are passed to Cassandra in order to obtain the data to be included in the result set.
 
-![integration](./resources/integration_2.png)
 
 ### Additional resources
 A free [self-paced tutorial on DSE Search](https://academy.datastax.com/courses/ds310-datastax-enterprise-search) is available from the DataStax Academy.  It includes slides and a self-contained Virtual Machine for exercises.
@@ -18,8 +17,6 @@ A free [self-paced tutorial on DSE Search](https://academy.datastax.com/courses/
 In typical Open Source Solr (OSS), indices run the risk of being stale because of the separation of the database and the Solr indices. There can be a significant amount of latency between the time that data is added to the database and the time that it is added to Solr.  And as new data is added to the database or existing records are removed, separate processes are usually required to keep the indices in-sync with the database.  However, due to the tight integration between Solr and Cassandra, the danger of serving stale data is mitigated because there is
 
 Any changes to a Cassandra data record in a Solr-backed Cassandra table will automatically trigger an indexing event where the record is re-indexed using the Solr libraries.  Usually these records are discoverable (indexed) in search queries within a few seconds (configurable).  
-
-![Alt text](./resources/integration.png)
 
 ### Reduced storage costs and fewer tables
 
